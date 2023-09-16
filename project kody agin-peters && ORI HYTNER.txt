@@ -1,0 +1,1176 @@
+//ORI HYTNER ID:318733904 && KODY AGIN-PRTERS ID:209500131
+MAIN,   		LDA	STR0_START
+			BSA 	PUTS		//printf(ENTER YOUR CHOICE =)
+			LDA	STR_A_START
+			BSA 	PUTS		//printf(A) RUN DATA FROM THE SYSTEM)
+			LDA	STR_B_START
+			BSA 	PUTS		//printf(B)RUN DATA FROM THE KEYBOARD)
+			BSA 	getc		//getc(char)
+			STA 	CHAR
+			CMA
+			INC
+			ADD      CHAR_A
+			SZA					//if((char-CHAR_A) == 0)
+			BUN     CHOICE_B	//ELSE,	GOTO CHOICE_B
+CHOICE_A, 		LDA	STR1_START	//THEN,
+			BSA 	PUTS		//printf(NUM OF STUDENTS =)
+			BSA 	COUNT_SUB	//
+			STA 	STUDENTS	//STUDENTS=COUNT_SUB()
+			BSA 	CONV_SUB
+			BSA 	SUM_SUB
+			STA 	G_SUM		//G_SUM=SUM_SUB()
+			LDA	STR2_START
+			BSA 	PUTS		//printf(AVARAGE GRADE=)
+			BSA 	DIVISION_SUB
+			STA 	G_AVARAGE	//G_AVARAGE=DIVISION_SUB()
+			BSA 	CONV_SUB	//printf("%d",G_AVARAGE)
+			LDA 	ENTER
+			BSA 	PUTC
+			LDA	STR3_START	
+			BSA 	PUTS		//printf("INTERVAL:")
+			LDA	STR4_START	
+			BSA 	PUTS		//printf("FREQ.")
+			LDA	ENTER
+			BSA 	INTER_SUB	//Calculation of the INTERVALS
+			BSA 	INTER_PRINT	//print the Frequency Distribution
+			LDA	ENTER
+			BSA	PUTC
+			LDA	STR5_START	
+			BSA	PUTS		//printf("GRADE DISTRIBUTION:")
+			LDA	STR6_START
+			BSA	PUTS		//printf("MAX=")
+			BSA	MAX_SUB
+			ADD	ASCIIZERO
+			BSA	PUTC		//printf("%d",MAX_SUB()-ASCIIZERO)
+			LDA	TAB
+			BSA	PUTC
+			LDA	STR7_START	
+			BSA	PUTS		//printf("MIN=")
+			BSA	MIN_SUB		//MIN_SUB()
+			ADD	ASCIIZERO
+			BSA	PUTC		//printf("%d",MIN_SUB()-ASCIIZERO)
+            		BUN     FI
+CHOICE_B, 		LDA 	CHAR
+            		CMA
+            		INC
+            		ADD     CHAR_B
+            		SZA		//if(char-CHAR_B == 0)
+            		BUN     MAIN	//ELSE,	GOTO MAIN
+			LDA	ENTER		//THEN
+			BSA	PUTC
+			LDA	G_START
+			BSA	GET_FROM_KEYBORAD	//GET_FROM_KEYBORAD(*G_START)
+			LDA	STR1_START
+			BSA 	PUTS				//printf("NUM OF STUDENTS =")
+			BSA 	COUNT_SUB			
+			STA 	STUDENTS			//STUDENTS=COUNT_SUB()
+			BSA 	CONV_SUB			/printf("%d",STUDENTS)
+			BSA 	SUM_SUB
+			STA 	G_SUM				//G_SUM=SUM_SUB()
+			CLA
+			LDA	STR2_START			
+			BSA 	PUTS				//printf(AVARAGE GRADE=)
+			BSA 	DIVISION_SUB
+			STA 	G_AVARAGE			//G_AVARAGE=DIVISION_SUB()
+			BSA 	CONV_SUB			//printf("%d",G_AVARAGE)
+			LDA 	ENTER
+			BSA 	PUTC
+			CLA
+			LDA	STR3_START
+			BSA 	PUTS				//printf("INTERVAL:")
+			LDA	STR4_START
+			BSA 	PUTS				//printf("FREQ.")
+			LDA	ENTER
+			BSA 	INTER_SUB			//Calculation of the INTERVALS
+			BSA 	INTER_PRINT			//print the Frequency Distribution
+			LDA	ENTER
+			BSA	PUTC
+			LDA		STR5_START
+			BSA		PUTS				//printf("GRADE DISTRIBUTION:")
+			LDA		STR6_START
+			BSA		PUTS				//printf("MAX=")
+			BSA		MAX_SUB				//MAX_SUB()
+			ADD		ASCIIZERO
+			BSA		PUTC				//printf("%d",MAX_SUB()-ASCIIZERO)
+			LDA		TAB
+			BSA		PUTC
+			LDA		STR7_START
+			BSA		PUTS				//printf("MIN=")
+			BSA		MIN_SUB				//MIN_SUB()
+			ADD		ASCIIZERO
+			BSA		PUTC				//printf("%d",MIN_SUB()-ASCIIZERO)
+FI,         HLT
+
+//MAIN DATA
+CHAR, 		HEX 	0
+CHAR_A,		HEX     41
+CHAR_B,		HEX     42
+ 
+G_START,	HEX 	100
+G_PTR,		HEX 	0
+            ORG 	100
+GRADES,     DEC 	0
+            DEC 	1
+            DEC 	2
+            DEC 	55
+            DEC 	11
+            DEC 	22
+            DEC 	33
+            DEC 	44
+            DEC 	56
+            DEC 	57
+            DEC 	99
+            DEC 	100
+            DEC 	58
+            DEC 	66
+            DEC 	76
+            DEC 	78
+            DEC 	77
+            DEC 	77
+            DEC 	77
+            DEC 	88
+            DEC 	-999
+TERMINATOR, DEC 	999
+
+STUDENTS,	DEC 	0
+G_SUM,		DEC 	0
+G_AVARAGE,  DEC		0
+
+ENTER,		HEX 	00D
+
+I_START,	HEX 	150
+I_PTR,		HEX 	0
+            ORG 	150
+INTERVALS,  DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+            DEC 	0
+			DEC 	-999
+I_COUNT, 	DEC 	0
+
+//------------//STRINGS------
+// ENTER YOUR CHOICE =
+STR0_START, HEX 	200
+			ORG     200
+STR0,       HEX		45
+            HEX     4E
+            HEX     54
+            HEX     45
+            HEX     52
+            HEX     20
+            HEX     59
+            HEX     4F
+            HEX     55
+			HEX     52
+			HEX     20
+			HEX     43
+			HEX     48
+            HEX     4F
+            HEX     49
+            HEX     43
+            HEX     45
+            HEX     A
+            HEX     0                        
+
+
+//A) RUN DATA FROM THE SYSTEM
+STR_A_START,HEX 	300
+            ORG     300
+STR_A,      HEX     41
+            HEX     29
+            HEX     20
+            HEX     52
+            HEX     55
+			HEX     4E
+			HEX     20
+            HEX     44
+            HEX     41
+            HEX     54
+            HEX     41
+            HEX     20
+            HEX     46
+            HEX     52
+            HEX     4F
+            HEX     4D
+            HEX     20
+            HEX     54
+            HEX     48
+			HEX     45
+            HEX     20
+            HEX     53
+            HEX     59
+            HEX     53
+            HEX		54
+            HEX 	45
+            HEX     4D
+            HEX      A
+            HEX      0
+
+//B)RUN DATA FROM THE KEYBOARD
+STR_B_START,HEX 	350
+            ORG     350
+STR_B,      HEX     42
+            HEX     29
+            HEX 	20
+            HEX     52
+            HEX     55
+            HEX     4E
+            HEX     20
+            HEX     44
+            HEX     41
+            HEX     54
+            HEX     41
+            HEX     20
+            HEX     46
+            HEX     52
+            HEX     4F
+            HEX     4D
+            HEX     20
+            HEX     54
+            HEX     48
+            HEX     45
+            HEX     20
+            HEX     4B
+            HEX     45
+            HEX     59
+            HEX     42
+            HEX     4F
+            HEX     41
+            HEX     52
+            HEX     44
+            HEX 	A
+            HEX 	0
+                                                      
+//NUM OF STUDENTS =
+STR1_START,	HEX 	400
+            ORG 	400
+STR1,		HEX 	A
+            HEX 	4E
+			HEX 	75
+            HEX 	6D
+            HEX 	20
+            HEX 	6F
+            HEX 	66
+            HEX 	20
+            HEX 	73
+            HEX 	74
+            HEX 	75
+            HEX 	64
+            HEX 	65
+            HEX 	6E
+            HEX 	74
+            HEX 	73
+            HEX 	3D
+            HEX 	20
+            HEX 	0
+
+//AVARAGE GRADE=
+STR2_START,	HEX 	450
+            ORG 	450
+STR2,       HEX 	20
+            HEX 	41
+            HEX 	76
+            HEX 	65
+            HEX 	72
+            HEX 	61
+            HEX 	67
+            HEX 	65
+            HEX 	20
+            HEX 	67
+            HEX 	72
+            HEX 	61
+            HEX 	64
+            HEX 	65
+            HEX 	3D
+            HEX 	0
+
+//INTERVAL
+STR3_START,	HEX 	500
+			ORG 	500
+STR3,		HEX 	A
+            HEX 	49
+            HEX 	6E
+            HEX 	74
+            HEX 	65
+            HEX 	72
+            HEX 	76
+            HEX 	61
+            HEX 	6C
+            HEX 	9
+            HEX 	0
+ 
+//FREQ.
+STR4_START,	HEX 	550
+            ORG 	550
+STR4,       HEX 	46
+            HEX 	72
+            HEX 	65
+            HEX 	71
+            HEX 	2E
+            HEX 	0
+//GRADE DISTRIBUTION:
+STR5_START,	HEX		600
+			ORG		600
+STR5,		HEX		0047
+			HEX		0052
+			HEX		0041
+			HEX		0044		
+			HEX		0045
+			HEX		0020
+			HEX		0044
+			HEX		0049
+			HEX		0053
+			HEX		0054
+			HEX		0052
+			HEX		0049	
+			HEX		0042
+			HEX		0055
+			HEX		0054
+			HEX		0049
+			HEX		004F
+			HEX		004E
+			HEX		003A
+			DEC		9
+			HEX		0
+//MAX= 
+STR6_START,	HEX 	650
+            ORG 	650
+STR6,       HEX 	004D
+            HEX 	0041
+            HEX 	0058
+            HEX 	003D
+            HEX 	0020
+            HEX 	0
+
+//MIN= 
+STR7_START,HEX 		700
+           ORG 		700
+STR7,      HEX 		004D
+           HEX 		0049
+           HEX 		004E
+           HEX 		003D
+           HEX 		0020
+           HEX 		0
+			  
+//0-9
+STR8_START,	HEX		710
+			ORG 	710
+STR8,		HEX		30
+			HEX		2D
+			HEX		39
+			HEX		0
+//10-19
+STR9_START,	HEX		720
+			ORG 	720
+STR9,		HEX		31
+			HEX		30
+			HEX		2D
+			HEX		31
+			HEX		39
+			HEX		0
+				
+//20-29
+STR10_START,HEX		730
+			ORG 	730
+STR10,		HEX		32
+			HEX		30
+			HEX		2D
+			HEX		32
+			HEX		39
+			HEX		0
+
+//30-39
+STR11_START,HEX		740
+			ORG 	740
+STR11,		HEX		33
+			HEX		30
+			HEX		2D
+			HEX		33
+			HEX		39
+			HEX		0
+				
+//40-49
+STR12_START,HEX		750
+			ORG 	750
+STR12,		HEX		34
+			HEX		30
+			HEX		2D
+			HEX		34
+			HEX		39
+			HEX		0
+//50-59
+STR13_START,HEX		760
+			ORG 	760
+STR13,		HEX		35
+			HEX		30
+			HEX		2D
+			HEX		35
+			HEX		39
+			HEX		0
+//60-69
+STR14_START,HEX		770
+			ORG 	770
+STR14,		HEX		36
+			HEX		30
+			HEX		2D
+			HEX		36
+			HEX		39
+			HEX		0
+//70-79
+STR15_START,HEX		780
+			ORG 	780
+STR15,		HEX		37
+			HEX		30
+			HEX		2D
+			HEX		37
+			HEX		39
+			HEX		0
+//80-89
+STR16_START,HEX		790
+			ORG 	790
+STR16,		HEX		38
+			HEX		30
+			HEX		2D
+			HEX		38
+			HEX		39
+			HEX		0
+//90-100
+STR17_START,HEX		800
+			ORG 	800
+STR17,		HEX		39
+			HEX		30
+			HEX		2D
+			HEX		31
+			HEX		30
+			HEX		30
+			HEX		0
+			
+
+//ARRAY OF Addresses for the INTERVALS names		
+INT_START,	HEX 	810
+            ORG 	810
+INT,  		HEX		710
+			HEX		720
+			HEX		730
+			HEX		740
+			HEX		750
+			HEX		760
+			HEX		770
+			HEX		780
+			HEX		790
+			HEX		800
+			HEX		0
+//ERRO
+ERRO_PTR,	HEX		830
+			ORG		830
+ERRO5,		HEX		A
+			HEX		45
+			HEX		52
+			HEX		52
+			HEX		4F
+			HEX		52
+			HEX		A
+			HEX		0
+
+//——————————————————————————————————————————
+// **************** Function int CHACK_RANGE(int INDEX) ****************
+// PURPOSE: chack if the index is in the range 0-9
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:
+// int index :integer passed through the Accumulator
+// OUTPUT PARAMETERS:
+// int : index, if the index is in the range
+// int : -1,if the index is not in the range  
+// CALLED BY: GET_FROM_KEYBORAD
+// CALLS: none
+// SIDE EFFECTS: None
+
+//chack range
+CHACK_RANGE,HEX		0
+			STA		INDEX
+			ADD		MINUS_A0
+			SZA
+			BUN		ELSE
+			BUN		THEN1
+ELSE,		SPA	
+			BUN		ERRO_DIG
+			LDA		INDEX
+			ADD		MINUS_A9
+			SNA
+			BUN		ELSE1
+			BUN		THEN1
+ELSE1,		SZA
+			BUN		ERRO_DIG
+THEN1,		LDA		INDEX
+			ADD		MINUS_A0
+			BUN		CHACK_RANGE	I
+ERRO_DIG,	LDA		FALSE
+			STA		INDEX
+			BUN		CHACK_RANGE	I
+				
+//DATA
+MINUS_A0,	HEX		-30
+MINUS_A9,	HEX		-39
+INDEX,		HEX		0
+FALSE,		DEC		-1
+
+// **************** Function void GET_FROM_KEYBORAD(char* G_START ) ****************
+// PURPOSE: get the input from the keyborad
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:	
+// char* G_START :pointer of the GRADES
+// OUTPUT PARAMETERS:none  
+// CALLED BY: main
+// CALLS: MultBy10(),CHACK_RANGE(),DIV_SUB2(),putc(),getc()
+// SIDE EFFECTS: None
+
+//GET_FROM_KEYBORAD SUBROUTINE
+GET_FROM_KEYBORAD,	HEX		0
+					STA		GPTR
+					LDA		ENTER
+					BSA		PUTC
+					LDA		ARROW
+					BSA		PUTC
+WHILE,				BSA		getc
+					STA		Cc
+					ADD		MIN_ENTER
+					SZA
+					BUN		CHACK_NUM
+					BUN		CHACK_TERMINTOR
+CHACK_NUM,			ISZ		COUNTINPUT
+					LDA		Cc
+					BSA		CHACK_RANGE
+					STA		Cc
+					SNA
+					BUN		ADD_TO_NUM
+					CLA
+					STA		TNum
+					LDA		ON
+					STA		FLAG100
+					BUN		WHILE
+ADD_TO_NUM,			LDA		TNum
+					BSA 	MultBy10 
+					ADD 	Cc 
+					STA 	TNum 
+					BUN 	WHILE
+CHACK_TERMINTOR,	LDA		TNum
+					ADD		TR
+					SZA		
+					BUN		ADD_TO_ARRY
+					BUN		END_WHILE
+ADD_TO_ARRY,		LDA		TNum
+					ADD		MINUS_100
+					SZA	
+					BUN		BEFOREPART2
+					LDA		OFF
+					STA		FLAG100
+					BUN		PART2
+BEFOREPART2,		LDA		COUNTINPUT
+					ADD		MIN_2
+					SPA
+					BUN		ALMOST	
+					LDA		ON
+					STA		FLAG100
+					CLA
+					STA		COUNTINPUT
+					BUN		ERRORMSG
+ALMOST,				LDA		COUNTINPUT
+					ADD		MIN_2
+					SZA
+					BUN		PART2
+					LDA		TNum
+					BSA		DIV_SUB2
+					SZA
+					BUN		PART2
+					LDA		ON
+					STA		FLAG100
+					CLA
+					STA		COUNTINPUT
+					BUN		ERRORMSG
+PART2,				LDA		FLAG100
+					SZA
+					BUN		ERRORMSG
+					LDA		TNum
+					STA		GPTR I
+					LDA		GPTR
+					INC
+					STA		GPTR
+					CLA
+					STA		TNum
+					STA		COUNTINPUT
+					LDA		ENTER
+					BSA		PUTC
+					LDA		ARROW
+					BSA		PUTC
+					LDA		OFF
+					STA		FLAG100
+					BUN		WHILE
+ERRORMSG,			CLA
+					STA		TNum
+					STA		COUNTINPUT
+					LDA		ERRO_PTR
+					BSA		PUTS
+					LDA		OFF
+					STA		FLAG100
+					LDA		ENTER
+					BSA		PUTC
+					LDA		ARROW
+					BSA		PUTC
+					BUN		WHILE
+END_WHILE,			LDA		TR
+					STA		GPTR	I
+					BUN		GET_FROM_KEYBORAD I
+
+
+//DATA
+GPTR,		HEX		0
+MIN_ENTER,	HEX		-D
+Cc,			HEX		0
+TNum,		DEC		0
+TR,			HEX		-3E7
+MIN_2,		DEC		-2
+MINUS_100,	DEC		-100
+ARROW,		HEX		3E
+FLAG100,	DEC		0
+ON,			DEC		1
+OFF,		DEC		0
+COUNTINPUT,	DEC		0
+
+// **************** Function int MultBy10(int tmp) ****************
+// PURPOSE: multiplie tmp by 10 
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:
+// int tmp:integer passed through the Accumulator
+// OUTPUT PARAMETERS:
+// int : the result of the multiplication
+// CALLED BY: GET_FROM_KEYBORAD
+// CALLS: none
+// SIDE EFFECTS: None
+
+//MultBy10 SUBROUTINE				
+MultBy10,	HEX	0
+			CLE 
+			CIL 
+			STA 	tmp 
+			CIL 
+			CIL 
+			ADD 	tmp
+			BUN 	MultBy10 I 
+
+// MultBy10 data
+tmp, 	DEC 	0
+
+
+// **************** Function char getc() ****************
+// PURPOSE: get input from the keyborde
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:
+// OUTPUT PARAMETERS:
+// char	:the input from the keyborde
+// CALLED BY: main,GET_FROM_KEYBORAD()
+// CALLS: none
+// SIDE EFFECTS: None
+
+//getc SUBROUTINE
+getc,			HEX 	0
+GInLoop,    	SKI
+				BUN 	GInLoop
+				INP
+GOutLoop,   	SKO
+				BUN 	GOutLoop
+				OUT
+				BUN 	getc          I
+ 
+ // **************** Function void PUTS(char *string) ****************
+// PURPOSE: print the string to the screen
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:
+// char*: the address passed through the Accumulator
+// OUTPUT PARAMETERS:
+// void:ptint the string to screen 
+// CALLED BY: main,GET_FROM_KEYBORAD,INTER_PRINT,
+// CALLS: none
+// SIDE EFFECTS: None
+ 
+//PUTS SUBROUTINE
+PUTS,       	HEX  	0
+				STA  	STR_PTR
+PUTS-LOOP,  	LDA  	STR_PTR I
+				SZA      
+				BUN     DO_OUTPUT
+				BUN     ENDLOOP
+DO_OUTPUT,  	BSA     PUTC
+				ISZ     STR_PTR
+				BUN     PUTS-LOOP
+ENDLOOP,    	BUN     PUTS I
+ 
+//PUTS DATA
+STR_PTR, 		HEX		0
+
+// **************** Function int COUNT_SUB() ****************
+// PURPOSE: calculates the numbers of students
+// GLOBAL PARAMETERS: G_START.
+// INPUT PARAMETERS:None.
+// OUTPUT PARAMETERS:
+// int : sum of total students by the numbers of GRADES
+// CALLED BY: main
+// CALLS: none
+// SIDE EFFECTS: None
+
+//COUNT ARRAY SUBROUTINE
+COUNT_SUB,  	HEX      0
+				LDA      G_START
+				STA      C_PTR
+COUNTLOOP,  	LDA    	C_PTR I
+				ADD     TERMINATOR
+				SZA
+				BUN     CS_ELSE
+				BUN     CS_ENDLOOP
+CS_ELSE,    	ISZ     COUNT
+				ISZ     C_PTR
+				BUN     COUNTLOOP
+CS_ENDLOOP, 	LDA     COUNT
+				BUN     COUNT_SUB I
+
+//COUNT ARRAY SUBROUTINE DATA
+COUNT,			DEC      0
+C_PTR,      	HEX      0
+
+// **************** Function int SUM_SUB() ****************
+// PURPOSE: calculates the sum of the total GRADES
+// GLOBAL PARAMETERS: G_START.
+// INPUT PARAMETERS:
+// int S_PTR: THE address of G_START passed through the Accumulator
+// OUTPUT PARAMETERS:
+// int : sum of all the GRADES
+// CALLED BY: main
+// CALLS: none
+// SIDE EFFECTS: None
+
+
+// SUM ARRAY SUBROUTINE
+SUM_SUB,		HEX      0
+				LDA      G_START
+				STA      S_PTR
+SUMLOOP,    	LDA      S_PTR I
+				ADD     TERMINATOR
+				SZA
+				BUN     SS_ELSE
+				BUN     SS_ENDLOOP
+SS_ELSE,    	LDA     SUM
+				ADD     S_PTR I
+				STA     SUM
+				ISZ     S_PTR
+				BUN     SUMLOOP
+SS_ENDLOOP, 	LDA     SUM
+                BUN     SUM_SUB I
+
+// SUM ARRAY SUBROUTINE DATA
+SUM,			DEC      0
+S_PTR,          HEX      0
+
+// **************** Function int DIVISION_SUB() ****************
+// PURPOSE: calculates the AVARAGE OF GRADES
+// GLOBAL PARAMETERS: count,sum.
+// INPUT PARAMETERS:
+// OUTPUT PARAMETERS:
+// int : the AVARAGE OF the GRADES
+// CALLED BY: main
+// CALLS: none
+// SIDE EFFECTS: None
+
+//DIVISION SUBROUTINE
+DIVISION_SUB,	HEX      0
+                LDA      COUNT
+                CMA
+                INC
+                STA     mDIVISOR
+                CLA
+                STA     DIGIT
+DIVLOOP,        LDA     mDIVISOR
+                ADD     SUM
+                SNA
+                BUN     DS_ELSE
+                BUN     DS_ENDLOOP
+DS_ELSE,        LDA     mDIVISOR
+                ADD     SUM
+                STA     SUM
+                ISZ     DIGIT
+                BUN     DIVLOOP
+DS_ENDLOOP,   	LDA     DIGIT
+                BUN     DIVISION_SUB I
+
+//DIVISION SUBROUTINE DATA
+mDIVISOR,       DEC      0
+DIGIT,          DEC      0
+
+
+// **************** Function char PUTC() ****************
+// PURPOSE: print a singel char to the screen
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:None.
+// OUTPUT PARAMETERS:
+// CALLED BY: main,GET_FROM_KEYBORAD,PUTS,CONV_SUB,INTER_PRINT
+// CALLS: none
+// SIDE EFFECTS: None
+
+//PUTC SUBROUTINE
+PUTC,          HEX      0
+POULOOP,       SKO
+               BUN     POULOOP
+               OUT
+               BUN     PUTC I
+
+// **************** Function int CONV_SUB(int a) ****************
+// PURPOSE: CONVERT the number and calls putc to print the new number 
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:
+// int a:integer passed through the Accumulator
+// OUTPUT PARAMETERS:
+// int : the new number after it has been converted 
+// CALLED BY: main
+// CALLS: putc
+// SIDE EFFECTS: None
+//CONVERT SUBROUTINE
+CONV_SUB,       HEX      0
+                STA      CONVNUM
+                CLA
+                STA     CONVDIGIT
+COS_LOOP,       LDA     MINUSTEN
+                ADD     CONVNUM
+                SNA
+                BUN     COS_ELSE
+                BUN     COS_END
+COS_ELSE,       ISZ     CONVDIGIT
+                STA     CONVNUM
+                BUN     COS_LOOP
+COS_END,        LDA     CONVDIGIT
+				SPA
+				BUN		DONTPRINT
+				ADD 	ASCIIZERO
+				BSA		PUTC
+DONTPRINT,		LDA     CONVNUM
+                ADD     ASCIIZERO
+				BSA		PUTC
+				BUN		CONV_SUB I
+
+//CONVERT SUBROUTINE DATA
+MINUSTEN,     	DEC 	-10
+ASCIIZERO,    	HEX 	30
+CONVNUM,     	DEC 	0
+CONVDIGIT,     	DEC 	0
+
+// **************** Function int *INTER_SUB() ****************
+// PURPOSE: calculates the GRADES and input in the right interval
+// GLOBAL PARAMETERS: G_START,I_START.
+// INPUT PARAMETERS:None.
+// OUTPUT PARAMETERS:
+// int *:the new array of intervals passed through the Accumulator
+// CALLED BY: main
+// CALLS: DIV_SUB2,
+// SIDE EFFECTS: None
+//INTERVALS SUBROUTIN
+INTER_SUB, 		HEX 	0
+				LDA 	G_START
+				STA 	IG_PTR
+IS_LOOP, 		LDA 	I_START
+				STA 	II_PTR
+				LDA 	IG_PTR I
+				ADD 	TERMINATOR
+				SZA
+				BUN 	ASSIGNLOOP
+				BUN 	IS_ENDLOOP
+ASSIGNLOOP, 	LDA 	IG_PTR I
+				BSA 	DIV_SUB2
+				STA 	NEWNUM
+				SZA
+				BUN 	NOTZERO
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP 
+NOTZERO, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	TEN
+				SZA
+				BUN 	NOTTEN
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTTEN, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	TWENTY
+				SZA
+				BUN 	NOTTWENTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTTWENTY, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	THIRTY
+				SZA 
+				BUN 	NOTTHIRTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTTHIRTY, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	FORTY
+				SZA 
+				BUN 	NOTFORTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTFORTY, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	FIFTY
+				SZA 
+				BUN 	NOTFIFTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTFIFTY, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	SIXSTY
+				SZA 
+				BUN 	NOTSIXSTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTSIXSTY, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	SEVENTY
+				SZA 
+				BUN 	NOTSEVENTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTSEVENTY, 	ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	EIGHTY
+				SZA 
+				BUN 	NOTEIGHTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP 
+NOTEIGHTY, 		ISZ 	II_PTR
+				LDA 	NEWNUM
+				ADD 	NINTY
+				SZA 
+				BUN 	NOTNINTY
+				ISZ 	II_PTR I
+				ISZ 	IG_PTR
+				BUN 	IS_LOOP
+NOTNINTY,		LDA		IG_PTR I
+				ADD		HUNDRED
+				SPA
+				BUN		GOOD
+				ISZ		IG_PTR
+				BUN		IS_LOOP
+GOOD,			ISZ 	II_PTR I
+				ISZ		IG_PTR
+				BUN		IS_LOOP
+
+IS_ENDLOOP,		BUN		INTER_SUB I
+
+
+
+//NTERVALS SUBROUTINE DATA
+IG_PTR, 		HEX 	0
+II_PTR, 		HEX 	0
+TEN, 			DEC 	-1
+TWENTY, 		DEC 	-2
+THIRTY, 		DEC 	-3
+FORTY, 			DEC 	-4
+FIFTY, 			DEC 	-5
+SIXSTY, 		DEC 	-6
+SEVENTY, 		DEC 	-7
+EIGHTY, 		DEC 	-8
+NINTY, 			DEC 	-9
+HUNDRED, 		DEC 	-100
+NEWNUM, 		DEC 	0
+ 
+ // **************** Function int DIV_SUB2(int CONVNUM2) ****************
+// PURPOSE: to Extracts the left digit
+// GLOBAL PARAMETERS: None.
+// INPUT PARAMETERS:
+// int CONVNUM2: integer passed through the Accumulator
+// OUTPUT PARAMETERS:
+// int : the left digit integer passed through the Accumulator
+// CALLED BY: GET_FROM_KEYBORAD,INTER_SUB
+// CALLS: none
+// SIDE EFFECTS: None
+ 
+//DIV_SUB2 SUBROUTINE
+DIV_SUB2,   	HEX      0
+				STA      CONVNUM2
+				CLA
+				STA      CONVDIGIT2
+COS_LOOP2,  	LDA      MINUSTEN2
+				ADD      CONVNUM2    
+				SNA
+				BUN     COS_ELSE2
+				BUN     COS_END2
+COS_ELSE2,  	ISZ     CONVDIGIT2
+				STA     CONVNUM2
+				BUN     COS_LOOP2
+COS_END2,   	LDA    	CONVDIGIT2
+				BUN     DIV_SUB2 I
+ 
+//DIV_SUB2 SUBROUTINE DATA
+MINUSTEN2,   	DEC     -10
+ASCIIZERO2,     HEX      30
+CONVNUM2,   	DEC      0
+CONVDIGIT2,   	DEC      0
+
+
+// **************** Function void INTER_PRINT() ****************
+// PURPOSE: print the Frequency Distribution 
+// GLOBAL PARAMETERS: *I_START,*INT_START.
+// INPUT PARAMETERS:None
+// OUTPUT PARAMETERS:
+// char* : print to screen the Frequency Distribution
+// CALLED BY: main
+// CALLS: PUTC,PUTS
+// SIDE EFFECTS: None
+
+//INTERVALPRINT SUBROUTINE
+INTER_PRINT, 	HEX 	0
+				LDA 	I_START
+				STA 	I_PTR
+				LDA		NEW_LINE
+				BSA		PUTC
+IP_LOOP, 		CLA
+				STA 	I_COUNT
+				LDA		INT_START	I
+				SZA
+				BUN		CONTINI
+				BUN		END_IPLOOP
+CONTINI,		BSA 	PUTS
+				LDA		DOTS
+				BSA		PUTC
+				ISZ		INT_START
+				LDA 	I_PTR I
+				ADD 	TERMINATOR
+				SZA
+				BUN 	I_PRINT
+				BUN 	END_IPLOOP
+I_PRINT,		LDA		TAB
+				BSA		PUTC
+				LDA		TAB
+				BSA		PUTC
+				LDA 	I_PTR I
+				ADD 	ASCIIZERO2
+				BSA 	PUTC
+				LDA 	TAB
+				BSA 	PUTC
+				LDA		ST_LINE
+				BSA		PUTC
+				
+PPPPP, 			LDA 	I_PTR I
+				CMA
+				INC
+				ADD 	I_COUNT
+				SZA
+				BUN 	PRINT*
+				ISZ 	I_PTR
+					
+				LDA 	ENTER
+				BSA 	PUTC
+				BUN 	IP_LOOP
+PRINT*, 		LDA 	STAR
+				BSA 	PUTC
+				ISZ 	I_COUNT
+				BUN 	PPPPP
+END_IPLOOP, 	BUN 	INTER_PRINT I 
+
+//NTERVALPRINT SUBROUTINE DATA
+STAR, 			HEX 	002A
+TAB, 			DEC 	9
+NEW_LINE,		HEX		A
+DOTS,			HEX		3A
+ST_LINE,		HEX		7C
+
+// **************** Function int MAX_SUB() ****************
+// PURPOSE: finds the max number of the intervals
+// GLOBAL PARAMETERS: *i_start .
+// INPUT PARAMETERS:
+// OUTPUT PARAMETERS:
+// int : the max number - integer passed through the Accumulator
+// CALLED BY: main
+// CALLS: none
+// SIDE EFFECTS: None
+
+//MAX SUBROUTINE
+MAX_SUB,		HEX		0
+				LDA		I_START
+				STA		GMAX_PTR
+MAXLOOP,		LDA		GMAX_PTR I
+				ADD		TERMINATOR
+				SZA
+				BUN		CHECKMAX
+				BUN		ENDMAX_SUB
+CHECKMAX,		LDA		GMAX_PTR I
+				CMA
+				INC
+				ADD		MAX
+				SNA
+				BUN		NOTMAX
+				LDA		GMAX_PTR I
+				STA		MAX
+NOTMAX,			ISZ		GMAX_PTR
+				BUN		MAXLOOP
+
+ENDMAX_SUB,		LDA		MAX
+				BUN		MAX_SUB I
+
+//MAX SUBROUTINE DATA
+MAX,			DEC		0
+GMAX_PTR,		HEX		0
+
+
+
+// **************** Function int MIN_SUB() ****************
+// PURPOSE: finds the minimum number of the intervals
+// GLOBAL PARAMETERS: *i_start .
+// INPUT PARAMETERS:
+// OUTPUT PARAMETERS:
+// int : the minimum number - integer passed through the Accumulator
+// CALLED BY: main
+// CALLS: none
+// SIDE EFFECTS: None
+//MIN SUBROUTINE
+
+MIN_SUB,		HEX		0
+				LDA		I_START
+				STA		GMIN_PTR
+MINLOOP,		LDA		GMIN_PTR I
+				ADD		TERMINATOR
+				SZA
+				BUN		CHECKMIN
+				BUN		ENDMIN_SUB
+CHECKMIN,		LDA		GMIN_PTR I
+				CMA
+				INC
+				ADD		MIN
+				SPA
+				BUN		NOTMIN
+				LDA		GMIN_PTR I
+				STA		MIN
+NOTMIN,			ISZ		GMIN_PTR
+				BUN		MINLOOP
+
+ENDMIN_SUB,		LDA		MIN
+				BUN		MIN_SUB I	
+
+////MIN SUBROUTINE DATA
+MIN,			DEC		21
+GMIN_PTR,		HEX		0
+
+
+
